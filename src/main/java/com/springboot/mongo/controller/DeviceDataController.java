@@ -6,8 +6,12 @@ import com.springboot.mongo.service.DeviceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -30,4 +34,25 @@ public class DeviceDataController {
 
     }
 
+    @GetMapping("/daily")
+    public List<DeviceData> getDailyData(
+            @RequestParam String deviceId
+    ) {
+        return deviceDataService.getDailyData(deviceId);
+    }
+
+    @GetMapping("/weekly")
+    public List<DeviceData> getWeeklyData(@RequestParam String deviceId){
+        return deviceDataService.getWeeklyData(deviceId);
+
+    }
+
+    @GetMapping("/monthly")
+    public List<DeviceData> getMonthlyData(@RequestParam String deviceId){
+        return deviceDataService.getMonthlydata(deviceId);
+    }
+    @GetMapping("/yearly")
+    public List<DeviceData> getYearlyData(@RequestParam String deviceId){
+        return deviceDataService.getYearlyData(deviceId);
+    }
 }
